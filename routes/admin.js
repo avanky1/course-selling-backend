@@ -1,9 +1,9 @@
 const { Router } = require('express');
 const adminRouter = Router();
-const {adminModel} = require("../db");
+const {adminModel, courseModel} = require("../db");
 
 const jwt = require("jsonwebtoken");
-const JWT_ADMIN_SECRET = process.env.JWT_ADMIN_SECRET
+const { JWT_ADMIN_SECRET } = require("../config"); 
 
 adminRouter.post("/signup", async (req,res) =>{
      const { email, password, firstname, lastname } = req.body;
@@ -57,9 +57,22 @@ adminRouter.post("/signin", async (req,res) =>{
 });
 }) 
 
-adminRouter.post("/", (req,res) =>{
+
+adminRouter.post("/course", adminMiddleware, async (req,res) =>{
+     const adminId= req.userId;
+
+     const {title, description, price, imageUrl} = req.body;
+
+     await courseModel.create({
+          title,
+          description,
+          price,
+          imageUrl,
+          createdBy: adminId
+     })
      res.send({
-          message: "Admin course endpoint"
+          message: "course added successfully",
+          courseId: course._id
      }); 
 })
 
