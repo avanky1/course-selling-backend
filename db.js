@@ -1,9 +1,22 @@
-
+require('dotenv').config();
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-console.log("Connected to MongoDB...")
-mongoose.connect("mongodb+srv://avan:Joi2tpPlB3TmEElu@cluster0.9pd5vyz.mongodb.net/coursera")
+async function connectDB() {
+     try {
+       await mongoose.connect(process.env.MONGODB_URI, {
+         useNewUrlParser: true,
+         useUnifiedTopology: true
+       });
+       console.log("Connected to MongoDB...");
+     } catch (err) {
+       console.error("MongoDB connection error:", err);
+     }
+   }
+   
+connectDB();
+
+
 const userSchema = new Schema({
      email: {
           type: String,
