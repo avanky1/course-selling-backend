@@ -24,7 +24,7 @@ const userSchema = new Schema({
           type: String,
           required: true
      },
-     fullname: {
+     firstname: {
           type: String,
           required: true
      },
@@ -47,7 +47,7 @@ const adminSchema = new Schema({
           type: String,
           required: true
      },
-     fullname: {
+     firstname: {
           type: String,
           required: true
      },
@@ -80,7 +80,7 @@ const courseSchema = new Schema({
           ref: 'admin', 
           required: true 
      }
-          
+
 })
 
 

@@ -1,20 +1,38 @@
 const { Router } = require('express');
+const { userModel } = require("../db"); 
 const userRouter = Router();
 
-userRouter.post('/signup', (req, res) => {
-  res.send({
-     message: "User signup endpoint" 
-});
+userRouter.post('/signup', async (req, res) => {
+  const { email, password, firstname, lastname } = req.body;
+ 
+  try {
+    await userModel.create({
+      email,
+      password,
+      firstname,
+      lastname
+    });
+    res.send({
+      message: "User signup successful",
+    });
+  } catch (error) {
+    console.error("Signup error:", error);
+    res.status(500).send({
+      message: "Error during user signup",
+      error: error.message,
+    });
+  }
 });
 
 userRouter.post('/signin', (req, res) => {
-  res.cookie("jwt", "avanish");
+  const { email, password } = req.body;
   res.send({ 
-     message: "User signin endpoint" 
+     message: "User signin successfully", 
 });
 });
 
 userRouter.get('/purchases', (req, res) => {
+  
   res.send({
      message: "User purchase endpoint"
 });
