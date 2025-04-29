@@ -1,14 +1,17 @@
 const express = require("express");
-const {useRouter} = require("./routes/user");
-const {createUserRouter} = require("./routes/userRoutes");
-const {createCourseRouter} = require("./routes/courseRoutes");
+const { userRouter } = require("./routes/user");
+const { courseRouter } = require("./routes/course");
+
+
+// const {createUserRouter} = require("./routes/userRoutes");
+// const {createCourseRouter} = require("./routes/courseRoutes");
 
 const app = express();
 
-app.use("/user", useRouter);
-app.use("/course", courseRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/course", courseRouter);
 
 // createUserRouter(app);
 // createCourseRouter(app);
 
-app.listen(300);
+app.listen(3000, () => console.log("Server is running"));
