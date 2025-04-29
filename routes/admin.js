@@ -13,15 +13,15 @@ adminRouter.post("./signin", (req,res) =>{
      res.send({
           message: "Admin signin endpoint"
      });
-})
+}) 
 
-adminRouter.post("./course", (req,res) =>{
+adminRouter.post("./", (req,res) =>{
      res.send({
           message: "Admin course endpoint"
-     });
+     }); 
 })
 
-adminRouter.put("./course", (req,res) =>{
+adminRouter.put("./", (req,res) =>{
      res.send({
           message: "Admin course adding endpoint"
      });
