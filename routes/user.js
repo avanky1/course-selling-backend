@@ -1,13 +1,14 @@
 const { Router } = require('express');
 const userRouter = Router();
 
-userRouter.get('/signup', (req, res) => {
+userRouter.post('/signup', (req, res) => {
   res.send({
      message: "User signup endpoint" 
 });
 });
 
-userRouter.get('/signin', (req, res) => {
+userRouter.post('/signin', (req, res) => {
+  res.cookie("jwt", "avanish");
   res.send({ 
      message: "User signin endpoint" 
 });
